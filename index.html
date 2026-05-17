@@ -53,8 +53,9 @@
   .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); }
   .hero-right { position: relative; display: flex; align-items: stretch; overflow: hidden; }
   .hero-img-container { width: 100%; position: relative; background: var(--gray); clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%); }
-  .hero-img-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,76,30,0.15) 0%, transparent 50%), #1a1a1a; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
+  .hero-img-bg { position: absolute; inset: 0; background: var(--black); display: flex; align-items: stretch; justify-content: stretch; overflow: hidden; }
   .hero-graphic { font-family: var(--heading); font-size: clamp(6rem, 13vw, 15rem); color: rgba(232,76,30,0.07); letter-spacing: -0.02em; line-height: 1; text-align: center; user-select: none; }
+  .hero-logo-img { width: 88%; height: 88%; object-fit: contain; object-position: center; display: block; margin: auto; }
   .hero-overlay-card { position: absolute; bottom: 2.5rem; left: 1.5rem; background: rgba(10,10,10,0.9); border: 1px solid #2e2e2e; border-left: 3px solid var(--orange); padding: 1rem 1.4rem; max-width: 240px; }
   .card-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
   .card-value { font-family: var(--heading); font-size: 1.1rem; letter-spacing: 0.04em; }
@@ -234,7 +235,7 @@
   <div class="hero-right">
     <div class="hero-img-container">
       <div class="hero-img-bg">
-        <div class="hero-graphic">EFG</div>
+        <img class="hero-logo-img" src="assets/excel-fit-logo.png" alt="Excel Fit logo">
       </div>
       <div class="hero-overlay-card">
         <div class="card-label">Location</div>
@@ -450,7 +451,7 @@
       </div>
       <div class="contact-block">
         <div class="contact-block-label">Email</div>
-        <div class="contact-block-value">info@excelfitgym.in</div>
+        <div class="contact-block-value">excelfitgym@gmail.com</div>
         <div class="contact-block-sub">We'll respond within 24 hours</div>
       </div>
       <div class="contact-block">
