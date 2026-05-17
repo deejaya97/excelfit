@@ -1,0 +1,56 @@
+query ListAllClasses @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  classes {
+    id
+    name
+    startTime
+    endTime
+    date
+    capacity
+    location
+    description
+    trainer {
+      displayName
+      email
+    }
+  }
+}
+
+query GetMyEnrollments @auth(level: USER) {
+  classEnrollments(where: { member: { id_expr: "auth.uid" } }) {
+    id
+    enrollmentDate
+    status
+    class {
+      name
+      date
+      startTime
+      endTime
+      trainer {
+        displayName
+      }
+    }
+  }
+}
+
+mutation EnrollInClass($classId: UUID!) @auth(level: USER) {
+  classEnrollment_insert(
+    data: {
+      classId: $classId
+      memberId_expr: "auth.uid"
+      enrollmentDate_expr: "request.time.date()"
+      createdAt_expr: "request.time"
+      status: "Enrolled"
+    }
+  )
+}
+
+mutation UpdateMyProfile($phoneNumber: String, $address: String, $photoUrl: String) @auth(level: USER) {
+  user_update(
+    key: { id_expr: "auth.uid" }
+    data: {
+      phoneNumber: $phoneNumber
+      address: $address
+      photoUrl: $photoUrl
+    }
+  )
+}
