@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
+import brandLogo from './assets/excelfit-logo.png';
 
 const blankMember = {
   firstName: '',
@@ -193,8 +194,13 @@ function App() {
     return (
       <main className="login-shell">
         <section className="login-panel">
+          <div className="login-brand">
+            <img src={brandLogo} alt="Excel Fit logo" className="brand-logo login-brand-logo" />
+            <div>
+              <p className="eyebrow">Excel Fit Gym</p>
+            </div>
+          </div>
           <div>
-            <p className="eyebrow">Excel Fit Gym</p>
             <h1>Staff Login</h1>
             <p className="muted">Local management console for up to 50 active gym members.</p>
           </div>
@@ -224,11 +230,8 @@ function App() {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand">
-          <span>EF</span>
-          <div>
-            <strong>Excel Fit</strong>
-            <small>Gym Management</small>
-          </div>
+          <img src={brandLogo} alt="Excel Fit logo" className="brand-logo" />
+          <small>Gym Management Console</small>
         </div>
         <nav>
           {[

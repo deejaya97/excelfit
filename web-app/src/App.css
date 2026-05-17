@@ -9,7 +9,7 @@
 }
 
 .login-panel {
-  width: min(440px, 100%);
+  width: min(520px, 100%);
   background: #fffaf0;
   border: 1px solid #e2d7c3;
   border-radius: 8px;
@@ -33,31 +33,39 @@
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand > span {
-  width: 44px;
-  height: 44px;
   display: grid;
-  place-items: center;
-  border-radius: 6px;
-  background: #f05a28;
-  color: white;
-  font-weight: 800;
+  gap: 10px;
+  justify-items: start;
 }
 
-.brand strong,
-.brand small {
+.brand-logo {
+  width: 100%;
+  max-width: 200px;
   display: block;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #050505;
+}
+
+.login-brand {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.login-brand-logo {
+  max-width: 260px;
 }
 
 .brand small,
 .muted,
 .hint {
   color: #7a756b;
+}
+
+.brand small {
+  color: #dcd5c8;
 }
 
 .sidebar nav {
@@ -447,6 +455,11 @@ th {
   .sidebar,
   .login-panel {
     padding: 18px;
+  }
+
+  .brand-logo,
+  .login-brand-logo {
+    max-width: 100%;
   }
 
   .topbar,
