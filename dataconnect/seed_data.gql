@@ -1,109 +1,161 @@
-mutation CreateDemoData @transaction @auth(level: PUBLIC, insecureReason: "Seed data is publicly accessible for demo purposes.") {
-  user_insertMany(data: [
+mutation CreateExcelFitDemoData
+  @transaction
+  @auth(level: PUBLIC, insecureReason: "Seed data is only for local demo setup.") {
+  membershipPlan_insertMany(data: [
     {
-      id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-      displayName: "Alice Smith",
-      email: "alice.smith@example.com",
-      role: "member",
-      createdAt: "2024-01-01T00:00:00Z"
-    },
+      id: "10000000-0000-4000-8000-000000000001"
+      name: "Basic Monthly"
+      durationDays: 30
+      price: 799
+      benefits: "Gym floor, cardio, free weights, locker access"
+      active: true
+      createdAt: "2026-05-01T00:00:00Z"
+    }
     {
-      id: "b1cffc88-8d1c-3be7-cc7e-7cc8ce491b22",
-      displayName: "Bob Johnson",
-      email: "bob.johnson@example.com",
-      role: "trainer",
-      createdAt: "2024-01-02T00:00:00Z"
-    },
+      id: "10000000-0000-4000-8000-000000000002"
+      name: "Pro Monthly"
+      durationDays: 30
+      price: 1399
+      benefits: "Basic plus group classes, progress tracking, trainer review"
+      active: true
+      createdAt: "2026-05-01T00:00:00Z"
+    }
     {
-      id: "c2d0dd77-7e2d-2ad6-dd8f-8dd9df5a2c33",
-      displayName: "Charlie Brown",
-      email: "charlie.brown@example.com",
-      role: "member",
-      createdAt: "2024-01-03T00:00:00Z"
+      id: "10000000-0000-4000-8000-000000000003"
+      name: "Elite Monthly"
+      durationDays: 30
+      price: 2199
+      benefits: "Pro plus personal training, diet planning, body composition review"
+      active: true
+      createdAt: "2026-05-01T00:00:00Z"
+    }
+    {
+      id: "10000000-0000-4000-8000-000000000004"
+      name: "Quarterly Saver"
+      durationDays: 90
+      price: 3777
+      benefits: "Three-month access with bundled savings"
+      active: true
+      createdAt: "2026-05-01T00:00:00Z"
     }
   ])
-  membershipType_insertMany(data: [
+
+  member_insertMany(data: [
     {
-      id: "d3e1ee66-6f3e-1dc5-ee9g-9ee0eg6b3d44",
-      name: "Standard Membership",
-      price: 29.99,
-      durationInMonths: 1,
-      createdAt: "2024-01-01T00:00:00Z",
-      description: "Access to all basic classes.",
-      features: ["Gym access", "Basic classes"]
-    },
+      id: "20000000-0000-4000-8000-000000000001"
+      memberCode: "M001"
+      firstName: "Aarav"
+      lastName: "Menon"
+      phone: "+91 90000 10001"
+      email: "aarav@example.com"
+      emergencyContact: "+91 90000 19999"
+      status: "active"
+      joinedOn: "2026-05-01"
+      notes: "Seed member for demo operations"
+      createdAt: "2026-05-01T00:00:00Z"
+    }
     {
-      id: "e4f2ff55-5g4f-0cb4-ff0h-0ff1fh7c4e55",
-      name: "Premium Membership",
-      price: 49.99,
-      durationInMonths: 3,
-      createdAt: "2024-01-01T00:00:00Z",
-      description: "Access to all classes, personal training sessions.",
-      features: ["Gym access", "All classes", "Personal training"]
+      id: "20000000-0000-4000-8000-000000000002"
+      memberCode: "M002"
+      firstName: "Diya"
+      lastName: "Nair"
+      phone: "+91 90000 10002"
+      email: "diya@example.com"
+      emergencyContact: "+91 90000 19999"
+      status: "active"
+      joinedOn: "2026-05-02"
+      notes: "Seed member for demo operations"
+      createdAt: "2026-05-02T00:00:00Z"
+    }
+    {
+      id: "20000000-0000-4000-8000-000000000003"
+      memberCode: "M003"
+      firstName: "Ishaan"
+      lastName: "Das"
+      phone: "+91 90000 10003"
+      email: "ishaan@example.com"
+      emergencyContact: "+91 90000 19999"
+      status: "active"
+      joinedOn: "2026-05-03"
+      notes: "Seed member for demo operations"
+      createdAt: "2026-05-03T00:00:00Z"
+    }
+    {
+      id: "20000000-0000-4000-8000-000000000004"
+      memberCode: "M004"
+      firstName: "Meera"
+      lastName: "Rao"
+      phone: "+91 90000 10004"
+      email: "meera@example.com"
+      emergencyContact: "+91 90000 19999"
+      status: "active"
+      joinedOn: "2026-05-04"
+      notes: "Seed member for demo operations"
+      createdAt: "2026-05-04T00:00:00Z"
     }
   ])
-  memberMembership_insertMany(data: [
+
+  membership_insertMany(data: [
     {
-      id: "f5g3gg44-4h5g-2ba3-gg1i-1gg2gi8d5f66",
-      userId: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-      membershipTypeId: "d3e1ee66-6f3e-1dc5-ee9g-9ee0eg6b3d44",
-      startDate: "2024-01-10",
-      endDate: "2024-02-09",
-      createdAt: "2024-01-10T00:00:00Z",
-      isActive: true
-    },
+      id: "30000000-0000-4000-8000-000000000001"
+      memberId: "20000000-0000-4000-8000-000000000001"
+      planId: "10000000-0000-4000-8000-000000000001"
+      startDate: "2026-05-01"
+      endDate: "2026-05-31"
+      status: "active"
+      createdAt: "2026-05-01T00:00:00Z"
+    }
     {
-      id: "g6h4hh33-3i6h-3cb2-hh2j-2hh3hj9e6g77",
-      userId: "c2d0dd77-7e2d-2ad6-dd8f-8dd9df5a2c33",
-      membershipTypeId: "e4f2ff55-5g4f-0cb4-ff0h-0ff1fh7c4e55",
-      startDate: "2024-01-15",
-      endDate: "2024-04-14",
-      createdAt: "2024-01-15T00:00:00Z",
-      isActive: true
+      id: "30000000-0000-4000-8000-000000000002"
+      memberId: "20000000-0000-4000-8000-000000000002"
+      planId: "10000000-0000-4000-8000-000000000002"
+      startDate: "2026-05-02"
+      endDate: "2026-06-01"
+      status: "active"
+      createdAt: "2026-05-02T00:00:00Z"
+    }
+    {
+      id: "30000000-0000-4000-8000-000000000003"
+      memberId: "20000000-0000-4000-8000-000000000003"
+      planId: "10000000-0000-4000-8000-000000000003"
+      startDate: "2026-05-03"
+      endDate: "2026-06-02"
+      status: "active"
+      createdAt: "2026-05-03T00:00:00Z"
+    }
+    {
+      id: "30000000-0000-4000-8000-000000000004"
+      memberId: "20000000-0000-4000-8000-000000000004"
+      planId: "10000000-0000-4000-8000-000000000004"
+      startDate: "2026-05-04"
+      endDate: "2026-08-02"
+      status: "active"
+      createdAt: "2026-05-04T00:00:00Z"
     }
   ])
-  class_insertMany(data: [
+
+  payment_insertMany(data: [
     {
-      id: "h7i5ii22-2j7i-4dc1-ii3k-3ii4ik0f7h88",
-      name: "Morning Yoga",
-      trainerId: "b1cffc88-8d1c-3be7-cc7e-7cc8ce491b22",
-      startTime: "2024-01-20T07:00:00Z",
-      endTime: "2024-01-20T08:00:00Z",
-      date: "2024-01-20",
-      capacity: 15,
-      createdAt: "2024-01-05T00:00:00Z",
-      description: "Start your day with a calming yoga session.",
-      location: "Studio A"
-    },
-    {
-      id: "i8j6jj11-1k8j-5ed0-jj4l-4jj5jl1g8i99",
-      name: "Evening Spin",
-      trainerId: "b1cffc88-8d1c-3be7-cc7e-7cc8ce491b22",
-      startTime: "2024-01-20T18:00:00Z",
-      endTime: "2024-01-20T19:00:00Z",
-      date: "2024-01-20",
-      capacity: 10,
-      createdAt: "2024-01-06T00:00:00Z",
-      description: "High-energy spin class to end your day.",
-      location: "Cycle Room"
+      id: "40000000-0000-4000-8000-000000000001"
+      memberId: "20000000-0000-4000-8000-000000000001"
+      membershipId: "30000000-0000-4000-8000-000000000001"
+      amount: 799
+      method: "UPI"
+      paidOn: "2026-05-01"
+      reference: "SEED-M001"
+      invoiceNumber: "INV-2026-0001"
+      createdAt: "2026-05-01T00:00:00Z"
     }
-  ])
-  classEnrollment_insertMany(data: [
     {
-      id: "j9k7kk00-0l9k-6fe9-kk5m-5kk6km2h9j00",
-      memberId: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-      classId: "h7i5ii22-2j7i-4dc1-ii3k-3ii4ik0f7h88",
-      enrollmentDate: "2024-01-12",
-      createdAt: "2024-01-12T00:00:00Z",
-      status: "confirmed"
-    },
-    {
-      id: "k0l8ll99-9m0l-7gf8-ll6n-6ll7ln3i0k11",
-      memberId: "c2d0dd77-7e2d-2ad6-dd8f-8dd9df5a2c33",
-      classId: "i8j6jj11-1k8j-5ed0-jj4l-4jj5jl1g8i99",
-      enrollmentDate: "2024-01-16",
-      createdAt: "2024-01-16T00:00:00Z",
-      status: "confirmed"
+      id: "40000000-0000-4000-8000-000000000002"
+      memberId: "20000000-0000-4000-8000-000000000002"
+      membershipId: "30000000-0000-4000-8000-000000000002"
+      amount: 1399
+      method: "Cash"
+      paidOn: "2026-05-02"
+      reference: "SEED-M002"
+      invoiceNumber: "INV-2026-0002"
+      createdAt: "2026-05-02T00:00:00Z"
     }
   ])
 }

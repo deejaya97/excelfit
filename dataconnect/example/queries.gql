@@ -1,56 +1,173 @@
-query ListAllClasses @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
-  classes {
+query ListMembers @auth(level: USER) {
+  members(orderBy: { joinedOn: DESC }, limit: 100) {
     id
-    name
-    startTime
-    endTime
-    date
-    capacity
-    location
-    description
-    trainer {
-      displayName
-      email
-    }
-  }
-}
-
-query GetMyEnrollments @auth(level: USER) {
-  classEnrollments(where: { member: { id_expr: "auth.uid" } }) {
-    id
-    enrollmentDate
+    memberCode
+    firstName
+    lastName
+    phone
+    email
+    emergencyContact
     status
-    class {
-      name
-      date
-      startTime
-      endTime
-      trainer {
-        displayName
+    joinedOn
+    notes
+    memberships_on_member(orderBy: { endDate: DESC }, limit: 1) {
+      id
+      startDate
+      endDate
+      status
+      plan {
+        id
+        name
+        price
+        durationDays
       }
     }
   }
 }
 
-mutation EnrollInClass($classId: UUID!) @auth(level: USER) {
-  classEnrollment_insert(
+query ListPlans @auth(level: USER) {
+  membershipPlans(where: { active: { eq: true } }, orderBy: { price: ASC }) {
+    id
+    name
+    durationDays
+    price
+    benefits
+    active
+  }
+}
+
+query ListPayments @auth(level: USER) {
+  payments(orderBy: { paidOn: DESC }, limit: 100) {
+    id
+    amount
+    method
+    paidOn
+    reference
+    notes
+    invoiceNumber
+    member {
+      id
+      memberCode
+      firstName
+      lastName
+    }
+    membership {
+      id
+      startDate
+      endDate
+      plan {
+        id
+        name
+      }
+    }
+  }
+}
+
+query ListCheckIns @auth(level: USER) {
+  checkIns(orderBy: { checkedInAt: DESC }, limit: 100) {
+    id
+    checkedInAt
+    status
+    message
+    member {
+      id
+      memberCode
+      firstName
+      lastName
+    }
+  }
+}
+
+mutation CreateMember(
+  $memberCode: String!
+  $firstName: String!
+  $lastName: String!
+  $phone: String!
+  $email: String
+  $emergencyContact: String
+  $joinedOn: Date!
+  $notes: String
+) @auth(level: USER) {
+  member_insert(
     data: {
-      classId: $classId
-      memberId_expr: "auth.uid"
-      enrollmentDate_expr: "request.time.date()"
+      memberCode: $memberCode
+      firstName: $firstName
+      lastName: $lastName
+      phone: $phone
+      email: $email
+      emergencyContact: $emergencyContact
+      status: "active"
+      joinedOn: $joinedOn
+      notes: $notes
       createdAt_expr: "request.time"
-      status: "Enrolled"
     }
   )
 }
 
-mutation UpdateMyProfile($phoneNumber: String, $address: String, $photoUrl: String) @auth(level: USER) {
-  user_update(
-    key: { id_expr: "auth.uid" }
+mutation CreatePlan($name: String!, $durationDays: Int!, $price: Float!, $benefits: String) @auth(level: USER) {
+  membershipPlan_insert(
     data: {
-      phoneNumber: $phoneNumber
-      address: $address
-      photoUrl: $photoUrl
+      name: $name
+      durationDays: $durationDays
+      price: $price
+      benefits: $benefits
+      active: true
+      createdAt_expr: "request.time"
+    }
+  )
+}
+
+mutation AssignMembership($memberId: UUID!, $planId: UUID!, $startDate: Date!, $endDate: Date!)
+  @auth(level: USER)
+  @transaction {
+  membership_updateMany(
+    where: { memberId: { eq: $memberId }, status: { eq: "active" } }
+    data: { status: "expired" }
+  )
+  membership_insert(
+    data: {
+      memberId: $memberId
+      planId: $planId
+      startDate: $startDate
+      endDate: $endDate
+      status: "active"
+      createdAt_expr: "request.time"
+    }
+  )
+}
+
+mutation RecordPayment(
+  $memberId: UUID!
+  $membershipId: UUID
+  $amount: Float!
+  $method: String!
+  $paidOn: Date!
+  $reference: String
+  $notes: String
+  $invoiceNumber: String!
+) @auth(level: USER) {
+  payment_insert(
+    data: {
+      memberId: $memberId
+      membershipId: $membershipId
+      amount: $amount
+      method: $method
+      paidOn: $paidOn
+      reference: $reference
+      notes: $notes
+      invoiceNumber: $invoiceNumber
+      createdAt_expr: "request.time"
+    }
+  )
+}
+
+mutation CreateCheckIn($memberId: UUID!, $status: String!, $message: String!) @auth(level: USER) {
+  checkIn_insert(
+    data: {
+      memberId: $memberId
+      status: $status
+      message: $message
+      checkedInAt_expr: "request.time"
     }
   )
 }

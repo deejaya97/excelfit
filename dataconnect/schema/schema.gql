@@ -1,47 +1,54 @@
-type User @table {
-  displayName: String!
-  email: String!
-  role: String!
-  createdAt: Timestamp!
-  phoneNumber: String
-  address: String
-  photoUrl: String
+type Member @table {
+  id: UUID! @default(expr: "uuidV4()")
+  memberCode: String! @col(dataType: "varchar(20)")
+  firstName: String! @col(dataType: "varchar(80)")
+  lastName: String! @col(dataType: "varchar(80)")
+  phone: String! @col(dataType: "varchar(32)")
+  email: String @col(dataType: "varchar(160)")
+  emergencyContact: String @col(dataType: "varchar(80)")
+  status: String! @col(dataType: "varchar(24)")
+  joinedOn: Date!
+  notes: String
+  createdAt: Timestamp! @default(expr: "request.time")
 }
 
-type MembershipType @table {
-  name: String!
+type MembershipPlan @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String! @col(dataType: "varchar(80)")
+  durationDays: Int!
   price: Float!
-  durationInMonths: Int!
-  createdAt: Timestamp!
-  description: String
-  features: [String]
+  benefits: String
+  active: Boolean!
+  createdAt: Timestamp! @default(expr: "request.time")
 }
 
-type MemberMembership @table {
-  user: User!
-  membershipType: MembershipType!
+type Membership @table {
+  id: UUID! @default(expr: "uuidV4()")
+  member: Member!
+  plan: MembershipPlan!
   startDate: Date!
   endDate: Date!
-  createdAt: Timestamp!
-  isActive: Boolean
+  status: String! @col(dataType: "varchar(24)")
+  createdAt: Timestamp! @default(expr: "request.time")
 }
 
-type Class @table {
-  name: String!
-  trainer: User
-  startTime: Timestamp!
-  endTime: Timestamp!
-  date: Date!
-  capacity: Int!
-  createdAt: Timestamp!
-  description: String
-  location: String
+type Payment @table {
+  id: UUID! @default(expr: "uuidV4()")
+  member: Member!
+  membership: Membership
+  amount: Float!
+  method: String! @col(dataType: "varchar(32)")
+  paidOn: Date!
+  reference: String @col(dataType: "varchar(80)")
+  notes: String
+  invoiceNumber: String! @col(dataType: "varchar(40)")
+  createdAt: Timestamp! @default(expr: "request.time")
 }
 
-type ClassEnrollment @table {
-  member: User!
-  class: Class!
-  enrollmentDate: Date!
-  createdAt: Timestamp!
-  status: String
+type CheckIn @table {
+  id: UUID! @default(expr: "uuidV4()")
+  member: Member!
+  checkedInAt: Timestamp! @default(expr: "request.time")
+  status: String! @col(dataType: "varchar(24)")
+  message: String!
 }

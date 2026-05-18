@@ -1,16 +1,24 @@
-# React + Vite
+# Excel Fit Admin Console
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite admin console for Excel Fit Gym. Data is stored through Firebase SQL Connect and staff login uses Firebase Authentication.
 
-Currently, two official plugins are available:
+## Firebase setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Enable Email/Password sign-in in Firebase Authentication.
+2. Create a staff user, for example `admin@excelfitgym.com`.
+3. Deploy the SQL Connect schema and connector from the repo root:
 
-## React Compiler
+```powershell
+firebase deploy --only dataconnect
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+4. Optional: seed demo plans and members with `dataconnect/seed_data.gql` using the Firebase SQL Connect VS Code extension.
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```powershell
+npm.cmd install
+npm.cmd run dev
+```
+
+Open `http://localhost:5173`.
