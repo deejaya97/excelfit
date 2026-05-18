@@ -13,7 +13,8 @@ React + Vite admin console for Excel Fit Gym. Data is stored in Cloud Firestore 
 firebase deploy --only firestore:rules
 ```
 
-5. Optional: add demo plans and members from the app UI after logging in.
+5. This Firestore branch does not require Firebase Data Connect or Cloud SQL.
+6. Optional: add demo plans and members from the app UI after logging in.
 
 ## Run locally
 
