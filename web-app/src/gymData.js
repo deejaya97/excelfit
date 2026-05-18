@@ -1,17 +1,8 @@
-import {
-  assignMembership as assignMembershipMutation,
-  createCheckIn,
-  createMember as createMemberMutation,
-  createPlan as createPlanMutation,
-  listCheckIns,
-  listMembers,
-  listPayments,
-  listPlans,
-  recordPayment as recordPaymentMutation,
-} from '@dataconnect/generated';
-import { dataConnect } from './firebase';
+import { addDoc, collection, doc, getDocs, writeBatch } from 'firebase/firestore';
+import { db } from './firebase';
 
 const today = () => new Date().toISOString().slice(0, 10);
+const now = () => new Date().toISOString();
 
 const addDays = (date, days) => {
   const next = new Date(`${date}T00:00:00`);
@@ -21,8 +12,21 @@ const addDays = (date, days) => {
 
 const byNewestDate = (field) => (a, b) => String(b[field] || '').localeCompare(String(a[field] || ''));
 
+const collectionNames = {
+  members: 'members',
+  plans: 'plans',
+  memberships: 'memberships',
+  payments: 'payments',
+  checkIns: 'checkIns',
+};
+
+async function readCollection(name) {
+  const snapshot = await getDocs(collection(db, name));
+  return snapshot.docs.map((item) => ({ id: item.id, ...item.data() }));
+}
+
 const mapMember = (member) => {
-  const membership = member.memberships_on_member?.[0];
+  const membership = member.membership || null;
   return {
     id: member.id,
     member_code: member.memberCode,
@@ -35,9 +39,9 @@ const mapMember = (member) => {
     joined_on: member.joinedOn,
     notes: member.notes || '',
     membership_id: membership?.id || '',
-    plan_id: membership?.plan?.id || '',
-    plan_name: membership?.plan?.name || '',
-    plan_price: membership?.plan?.price || '',
+    plan_id: membership?.planId || '',
+    plan_name: membership?.planName || '',
+    plan_price: membership?.planPrice || '',
     start_date: membership?.startDate || '',
     end_date: membership?.endDate || '',
     membership_status: membership?.status || '',
@@ -64,9 +68,9 @@ const mapPayment = (payment) => ({
   member_id: payment.member?.id || '',
   member_code: payment.member?.memberCode || '',
   member_name: payment.member ? `${payment.member.firstName} ${payment.member.lastName}` : '',
-  plan_name: payment.membership?.plan?.name || '',
-  start_date: payment.membership?.startDate || '',
-  end_date: payment.membership?.endDate || '',
+  plan_name: payment.planName || '',
+  start_date: payment.startDate || '',
+  end_date: payment.endDate || '',
 });
 
 const mapCheckIn = (checkIn) => ({
@@ -80,17 +84,70 @@ const mapCheckIn = (checkIn) => ({
 });
 
 export async function loadGymData() {
-  const [memberData, planData, paymentData, checkInData] = await Promise.all([
-    listMembers(dataConnect).then((result) => result.data),
-    listPlans(dataConnect).then((result) => result.data),
-    listPayments(dataConnect).then((result) => result.data),
-    listCheckIns(dataConnect).then((result) => result.data),
+  const [memberDocs, planDocs, membershipDocs, paymentDocs, checkInDocs] = await Promise.all([
+    readCollection(collectionNames.members),
+    readCollection(collectionNames.plans),
+    readCollection(collectionNames.memberships),
+    readCollection(collectionNames.payments),
+    readCollection(collectionNames.checkIns),
   ]);
 
-  const members = (memberData.members || []).map(mapMember);
-  const plans = (planData.membershipPlans || []).map(mapPlan);
-  const payments = (paymentData.payments || []).map(mapPayment).sort(byNewestDate('paid_on'));
-  const checkins = (checkInData.checkIns || []).map(mapCheckIn).sort(byNewestDate('checked_in_at'));
+  const activePlans = planDocs.filter((plan) => plan.active !== false);
+  const plansById = new Map(planDocs.map((plan) => [plan.id, plan]));
+  const membershipsByMember = new Map();
+
+  membershipDocs
+    .slice()
+    .sort(byNewestDate('endDate'))
+    .forEach((membership) => {
+      const current = membershipsByMember.get(membership.memberId);
+      if (!current) membershipsByMember.set(membership.memberId, membership);
+    });
+
+  const members = memberDocs
+    .map((member) => {
+      const membership = membershipsByMember.get(member.id);
+      const plan = membership ? plansById.get(membership.planId) : null;
+      return mapMember({
+        ...member,
+        membership: membership
+          ? {
+              ...membership,
+              planId: membership.planId,
+              planName: plan?.name || '',
+              planPrice: plan?.price || '',
+            }
+          : null,
+      });
+    })
+    .sort(byNewestDate('joined_on'));
+
+  const plans = activePlans.map(mapPlan).sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
+  const membersById = new Map(memberDocs.map((member) => [member.id, member]));
+
+  const payments = paymentDocs
+    .map((payment) => {
+      const member = membersById.get(payment.memberId);
+      const membership = payment.membershipId ? membershipDocs.find((item) => item.id === payment.membershipId) : null;
+      const plan = membership ? plansById.get(membership.planId) : null;
+      return mapPayment({
+        ...payment,
+        member,
+        planName: plan?.name || '',
+        startDate: membership?.startDate || '',
+        endDate: membership?.endDate || '',
+      });
+    })
+    .sort(byNewestDate('paid_on'));
+
+  const checkins = checkInDocs
+    .map((checkIn) =>
+      mapCheckIn({
+        ...checkIn,
+        member: membersById.get(checkIn.memberId),
+      }),
+    )
+    .sort(byNewestDate('checked_in_at'));
 
   return {
     members,
@@ -102,24 +159,28 @@ export async function loadGymData() {
 }
 
 export async function createMember(form, members) {
-  await createMemberMutation(dataConnect, {
+  await addDoc(collection(db, collectionNames.members), {
     memberCode: nextMemberCode(members),
     firstName: form.firstName,
     lastName: form.lastName,
     phone: form.phone,
     email: form.email || null,
     emergencyContact: form.emergencyContact || null,
+    status: 'active',
     joinedOn: today(),
     notes: form.notes || null,
+    createdAt: now(),
   });
 }
 
 export async function createPlan(form) {
-  await createPlanMutation(dataConnect, {
+  await addDoc(collection(db, collectionNames.plans), {
     name: form.name,
     durationDays: Number(form.durationDays),
     price: Number(form.price),
     benefits: form.benefits || null,
+    active: true,
+    createdAt: now(),
   });
 }
 
@@ -127,19 +188,33 @@ export async function assignMembership(form, plans) {
   const plan = plans.find((item) => item.id === form.planId);
   if (!plan) throw new Error('Select a valid membership plan.');
   const startDate = form.startDate || today();
-  await assignMembershipMutation(dataConnect, {
+  const membershipDocs = await readCollection(collectionNames.memberships);
+  const batch = writeBatch(db);
+
+  membershipDocs
+    .filter((membership) => membership.memberId === form.memberId && membership.status === 'active')
+    .forEach((membership) => {
+      batch.update(doc(db, collectionNames.memberships, membership.id), { status: 'expired' });
+    });
+
+  const membershipRef = doc(collection(db, collectionNames.memberships));
+  batch.set(membershipRef, {
     memberId: form.memberId,
     planId: form.planId,
     startDate,
     endDate: addDays(startDate, plan.duration_days),
+    status: 'active',
+    createdAt: now(),
   });
+
+  await batch.commit();
 }
 
 export async function recordPayment(form, members, payments) {
   const member = members.find((item) => item.id === form.memberId);
   if (!member) throw new Error('Select a valid member.');
   const invoiceNumber = nextInvoiceNumber(payments);
-  await recordPaymentMutation(dataConnect, {
+  await addDoc(collection(db, collectionNames.payments), {
     memberId: form.memberId,
     membershipId: form.membershipId || member.membership_id || null,
     amount: Number(form.amount),
@@ -148,6 +223,7 @@ export async function recordPayment(form, members, payments) {
     reference: form.reference || null,
     notes: form.notes || null,
     invoiceNumber,
+    createdAt: now(),
   });
 
   return {
@@ -164,8 +240,9 @@ export async function recordPayment(form, members, payments) {
 }
 
 export async function recordCheckIn(member, status, message) {
-  await createCheckIn(dataConnect, {
+  await addDoc(collection(db, collectionNames.checkIns), {
     memberId: member.id,
+    checkedInAt: now(),
     status,
     message,
   });

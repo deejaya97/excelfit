@@ -200,7 +200,7 @@ function App() {
             <div>
               <p className="eyebrow">Excel Fit Gym</p>
               <h1>Staff Login</h1>
-              <p className="muted">Firebase SQL Connect management console for up to 50 active gym members.</p>
+              <p className="muted">Cloud Firestore management console for up to 50 active gym members.</p>
             </div>
           </div>
           <form onSubmit={handleLogin} className="form-stack">
@@ -263,7 +263,7 @@ function App() {
       <main className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Firebase SQL Connect</p>
+            <p className="eyebrow">Cloud Firestore</p>
             <h1>{titleFor(activeTab)}</h1>
           </div>
           <div className="staff-chip">

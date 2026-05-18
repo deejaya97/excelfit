@@ -1,8 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
-import { getDataConnect } from 'firebase/data-connect';
-import { connectorConfig } from '@dataconnect/generated';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDaennHoD5FFwaBX6uNqZnpKn5Y3Jw-_y0',
@@ -16,8 +15,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-
-export const dataConnect = getDataConnect(app, connectorConfig);
+export const db = getFirestore(app);
 
 isSupported()
   .then((supported) => {
