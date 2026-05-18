@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
 import './App.css';
 import { auth } from './firebase';
+import brandLogo from './assets/excel-fit-logo.png';
 import {
   assignMembership,
   createMember,
@@ -194,10 +195,13 @@ function App() {
     return (
       <main className="login-shell">
         <section className="login-panel">
-          <div>
-            <p className="eyebrow">Excel Fit Gym</p>
-            <h1>Staff Login</h1>
-            <p className="muted">Firebase SQL Connect management console for up to 50 active gym members.</p>
+          <div className="login-brand">
+            <img src={brandLogo} alt="Excel Fit logo" className="brand-logo login-brand-logo" />
+            <div>
+              <p className="eyebrow">Excel Fit Gym</p>
+              <h1>Staff Login</h1>
+              <p className="muted">Firebase SQL Connect management console for up to 50 active gym members.</p>
+            </div>
           </div>
           <form onSubmit={handleLogin} className="form-stack">
             <label>
@@ -229,7 +233,7 @@ function App() {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand">
-          <span>EF</span>
+          <img src={brandLogo} alt="Excel Fit logo" className="brand-logo" />
           <div>
             <strong>Excel Fit</strong>
             <small>Gym Management</small>
