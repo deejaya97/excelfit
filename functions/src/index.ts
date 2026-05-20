@@ -1,65 +1,38 @@
-/* eslint-disable require-jsdoc, max-len */
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
 import express from "express";
 import {createHmac, timingSafeEqual} from "crypto";
-import {setGlobalOptions} from "firebase-functions";
-import {onRequest} from "firebase-functions/https";
-import {defineString} from "firebase-functions/params";
 import {Pool, PoolClient} from "pg";
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
-
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({maxInstances: 10});
-
-const databaseUrl = defineString("DATABASE_URL");
-const staffEmail = defineString("STAFF_EMAIL");
-const staffPassword = defineString("STAFF_PASSWORD");
-const sessionSecret = defineString("SESSION_SECRET");
 const app = express();
-app.use((request, _response, next) => {
-  if (request.url.startsWith("/api/")) {
-    request.url = request.url.slice(4);
+app.use(express.json());
+
+// ── CORS ─────────────────────────────────────────────────────────────────────
+app.use((request, response, next) => {
+  const allowedOrigin = process.env.CORS_ORIGIN || "*";
+  response.set("Access-Control-Allow-Origin", allowedOrigin);
+  response.set("Access-Control-Allow-Headers", "authorization,content-type");
+  response.set("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  if (request.method === "OPTIONS") {
+    response.status(204).send("");
+    return;
   }
   next();
 });
-app.use(express.json());
 
 let pool: Pool | undefined;
 let schemaReady: Promise<void> | undefined;
 
 function getPool() {
   if (!pool) {
-    const connectionString = databaseUrl.value() || process.env.DATABASE_URL;
+    const connectionString = process.env.DATABASE_URL;
     if (!connectionString) {
       throw new Error("DATABASE_URL is not configured.");
     }
-
     pool = new Pool({
       connectionString,
-      ssl: {rejectUnauthorized: true},
+      ssl: {rejectUnauthorized: false},
       max: 5,
     });
   }
-
   return pool;
 }
 
@@ -132,17 +105,8 @@ async function ensureSchema() {
   await schemaReady;
 }
 
+// ── Auth middleware ───────────────────────────────────────────────────────────
 app.use(async (request, response, next) => {
-  if (request.method === "OPTIONS") {
-    response.set("Access-Control-Allow-Origin", "*");
-    response.set("Access-Control-Allow-Headers", "authorization,content-type");
-    response.set("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-    response.status(204).send("");
-    return;
-  }
-
-  response.set("Access-Control-Allow-Origin", "*");
-
   if (request.path === "/login") {
     next();
     return;
@@ -161,8 +125,12 @@ app.use(async (request, response, next) => {
 });
 
 app.post("/login", (request, response) => {
-  const expectedEmail = getRequiredParam(staffEmail, "STAFF_EMAIL");
-  const expectedPassword = getRequiredParam(staffPassword, "STAFF_PASSWORD");
+  const expectedEmail = process.env.STAFF_EMAIL;
+  const expectedPassword = process.env.STAFF_PASSWORD;
+  if (!expectedEmail || !expectedPassword) {
+    response.status(500).json({error: "Server credentials not configured."});
+    return;
+  }
   const {email, password} = request.body || {};
 
   if (email !== expectedEmail || password !== expectedPassword) {
@@ -391,7 +359,7 @@ function verifySessionToken(token: string) {
 }
 
 function sign(value: string) {
-  return createHmac("sha256", getRequiredParam(sessionSecret, "SESSION_SECRET"))
+  return createHmac("sha256", getRequiredEnv("SESSION_SECRET"))
     .update(value)
     .digest("base64url");
 }
@@ -407,8 +375,8 @@ function base64UrlEncode(value: string) {
   return Buffer.from(value, "utf8").toString("base64url");
 }
 
-function getRequiredParam(param: ReturnType<typeof defineString>, name: string) {
-  const value = param.value() || process.env[name];
+function getRequiredEnv(name: string) {
+  const value = process.env[name];
   if (!value) throw new Error(`${name} is not configured.`);
   return value;
 }
@@ -417,4 +385,7 @@ function errorMessage(error: unknown) {
   return error instanceof Error ? error.message : "Unexpected server error.";
 }
 
-export const api = onRequest(app);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`ExcelFit API running on port ${PORT}`);
+});
