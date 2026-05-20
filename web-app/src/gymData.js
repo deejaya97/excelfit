@@ -1,15 +1,5 @@
-import {
-  assignMembership as assignMembershipMutation,
-  createCheckIn,
-  createMember as createMemberMutation,
-  createPlan as createPlanMutation,
-  listCheckIns,
-  listMembers,
-  listPayments,
-  listPlans,
-  recordPayment as recordPaymentMutation,
-} from '@dataconnect/generated';
-import { dataConnect } from './firebase';
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api';
+const sessionKey = 'excelfit_staff_session';
 
 const today = () => new Date().toISOString().slice(0, 10);
 
@@ -21,76 +11,30 @@ const addDays = (date, days) => {
 
 const byNewestDate = (field) => (a, b) => String(b[field] || '').localeCompare(String(a[field] || ''));
 
-const mapMember = (member) => {
-  const membership = member.memberships_on_member?.[0];
-  return {
-    id: member.id,
-    member_code: member.memberCode,
-    first_name: member.firstName,
-    last_name: member.lastName,
-    phone: member.phone,
-    email: member.email || '',
-    emergency_contact: member.emergencyContact || '',
-    status: member.status,
-    joined_on: member.joinedOn,
-    notes: member.notes || '',
-    membership_id: membership?.id || '',
-    plan_id: membership?.plan?.id || '',
-    plan_name: membership?.plan?.name || '',
-    plan_price: membership?.plan?.price || '',
-    start_date: membership?.startDate || '',
-    end_date: membership?.endDate || '',
-    membership_status: membership?.status || '',
-  };
-};
+export function getStoredStaff() {
+  return getStoredSession()?.staff || null;
+}
 
-const mapPlan = (plan) => ({
-  id: plan.id,
-  name: plan.name,
-  duration_days: plan.durationDays,
-  price: plan.price,
-  benefits: plan.benefits || '',
-  active: plan.active,
-});
+export function logoutStaff() {
+  localStorage.removeItem(sessionKey);
+}
 
-const mapPayment = (payment) => ({
-  id: payment.id,
-  amount: payment.amount,
-  method: payment.method,
-  paid_on: payment.paidOn,
-  reference: payment.reference || '',
-  notes: payment.notes || '',
-  invoice_number: payment.invoiceNumber,
-  member_id: payment.member?.id || '',
-  member_code: payment.member?.memberCode || '',
-  member_name: payment.member ? `${payment.member.firstName} ${payment.member.lastName}` : '',
-  plan_name: payment.membership?.plan?.name || '',
-  start_date: payment.membership?.startDate || '',
-  end_date: payment.membership?.endDate || '',
-});
-
-const mapCheckIn = (checkIn) => ({
-  id: checkIn.id,
-  checked_in_at: checkIn.checkedInAt,
-  status: checkIn.status,
-  message: checkIn.message,
-  member_id: checkIn.member?.id || '',
-  member_code: checkIn.member?.memberCode || '',
-  member_name: checkIn.member ? `${checkIn.member.firstName} ${checkIn.member.lastName}` : '',
-});
+export async function loginStaff(credentials) {
+  const data = await apiRequest('/login', {
+    method: 'POST',
+    body: credentials,
+    skipAuth: true,
+  });
+  localStorage.setItem(sessionKey, JSON.stringify(data));
+  return data.staff;
+}
 
 export async function loadGymData() {
-  const [memberData, planData, paymentData, checkInData] = await Promise.all([
-    listMembers(dataConnect).then((result) => result.data),
-    listPlans(dataConnect).then((result) => result.data),
-    listPayments(dataConnect).then((result) => result.data),
-    listCheckIns(dataConnect).then((result) => result.data),
-  ]);
-
-  const members = (memberData.members || []).map(mapMember);
-  const plans = (planData.membershipPlans || []).map(mapPlan);
-  const payments = (paymentData.payments || []).map(mapPayment).sort(byNewestDate('paid_on'));
-  const checkins = (checkInData.checkIns || []).map(mapCheckIn).sort(byNewestDate('checked_in_at'));
+  const data = await apiRequest('/gym-data');
+  const members = data.members || [];
+  const plans = data.plans || [];
+  const payments = (data.payments || []).sort(byNewestDate('paid_on'));
+  const checkins = (data.checkins || []).sort(byNewestDate('checked_in_at'));
 
   return {
     members,
@@ -102,24 +46,30 @@ export async function loadGymData() {
 }
 
 export async function createMember(form, members) {
-  await createMemberMutation(dataConnect, {
-    memberCode: nextMemberCode(members),
-    firstName: form.firstName,
-    lastName: form.lastName,
-    phone: form.phone,
-    email: form.email || null,
-    emergencyContact: form.emergencyContact || null,
-    joinedOn: today(),
-    notes: form.notes || null,
+  await apiRequest('/members', {
+    method: 'POST',
+    body: {
+      memberCode: nextMemberCode(members),
+      firstName: form.firstName,
+      lastName: form.lastName,
+      phone: form.phone,
+      email: form.email || null,
+      emergencyContact: form.emergencyContact || null,
+      joinedOn: today(),
+      notes: form.notes || null,
+    },
   });
 }
 
 export async function createPlan(form) {
-  await createPlanMutation(dataConnect, {
-    name: form.name,
-    durationDays: Number(form.durationDays),
-    price: Number(form.price),
-    benefits: form.benefits || null,
+  await apiRequest('/plans', {
+    method: 'POST',
+    body: {
+      name: form.name,
+      durationDays: Number(form.durationDays),
+      price: Number(form.price),
+      benefits: form.benefits || null,
+    },
   });
 }
 
@@ -127,11 +77,14 @@ export async function assignMembership(form, plans) {
   const plan = plans.find((item) => item.id === form.planId);
   if (!plan) throw new Error('Select a valid membership plan.');
   const startDate = form.startDate || today();
-  await assignMembershipMutation(dataConnect, {
-    memberId: form.memberId,
-    planId: form.planId,
-    startDate,
-    endDate: addDays(startDate, plan.duration_days),
+  await apiRequest('/memberships', {
+    method: 'POST',
+    body: {
+      memberId: form.memberId,
+      planId: form.planId,
+      startDate,
+      endDate: addDays(startDate, plan.duration_days),
+    },
   });
 }
 
@@ -139,15 +92,18 @@ export async function recordPayment(form, members, payments) {
   const member = members.find((item) => item.id === form.memberId);
   if (!member) throw new Error('Select a valid member.');
   const invoiceNumber = nextInvoiceNumber(payments);
-  await recordPaymentMutation(dataConnect, {
-    memberId: form.memberId,
-    membershipId: form.membershipId || member.membership_id || null,
-    amount: Number(form.amount),
-    method: form.method,
-    paidOn: form.paidOn || today(),
-    reference: form.reference || null,
-    notes: form.notes || null,
-    invoiceNumber,
+  await apiRequest('/payments', {
+    method: 'POST',
+    body: {
+      memberId: form.memberId,
+      membershipId: form.membershipId || member.membership_id || null,
+      amount: Number(form.amount),
+      method: form.method,
+      paidOn: form.paidOn || today(),
+      reference: form.reference || null,
+      notes: form.notes || null,
+      invoiceNumber,
+    },
   });
 
   return {
@@ -164,10 +120,13 @@ export async function recordPayment(form, members, payments) {
 }
 
 export async function recordCheckIn(member, status, message) {
-  await createCheckIn(dataConnect, {
-    memberId: member.id,
-    status,
-    message,
+  await apiRequest('/checkins', {
+    method: 'POST',
+    body: {
+      memberId: member.id,
+      status,
+      message,
+    },
   });
 }
 
@@ -229,4 +188,38 @@ function nextMemberCode(members) {
 function nextInvoiceNumber(payments) {
   const year = new Date().getFullYear();
   return `INV-${year}-${String(payments.length + 1).padStart(4, '0')}`;
+}
+
+async function apiRequest(path, options = {}) {
+  const token = getStoredSession()?.token;
+  if (!options.skipAuth && !token) throw new Error('Please log in again.');
+
+  const response = await fetch(`${apiBaseUrl}${path}`, {
+    method: options.method || 'GET',
+    headers: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      'Content-Type': 'application/json',
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined,
+  });
+
+  const contentType = response.headers.get('content-type') || '';
+  const data = contentType.includes('application/json') ? await response.json() : null;
+  if (!response.ok) {
+    throw new Error(data?.error || `Request failed with status ${response.status}`);
+  }
+
+  return data;
+}
+
+function getStoredSession() {
+  const rawSession = localStorage.getItem(sessionKey);
+  if (!rawSession) return null;
+
+  try {
+    return JSON.parse(rawSession);
+  } catch {
+    localStorage.removeItem(sessionKey);
+    return null;
+  }
 }

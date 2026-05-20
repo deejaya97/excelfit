@@ -1,0 +1,5 @@
+functions/.env
+web-app/.env
+node_modules/
+dist/
+lib/

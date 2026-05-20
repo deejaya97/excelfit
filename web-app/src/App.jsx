@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
 import './App.css';
-import { auth } from './firebase';
 import {
   assignMembership,
   createMember,
   createPlan,
+  getStoredStaff,
+  loginStaff,
   loadGymData,
   recordCheckIn,
   recordPayment,
+  logoutStaff,
   validateMemberCheckIn,
 } from './gymData';
 
@@ -36,7 +37,7 @@ const money = (value) =>
   }).format(Number(value || 0));
 
 function App() {
-  const [staff, setStaff] = useState(null);
+  const [staff, setStaff] = useState(() => getStoredStaff());
   const [login, setLogin] = useState({ email: 'admin@excelfitgym.com', password: '' });
   const [activeTab, setActiveTab] = useState('dashboard');
   const [dashboard, setDashboard] = useState(null);
@@ -75,32 +76,33 @@ function App() {
   }
 
   useEffect(() => {
-    return onAuthStateChanged(auth, (user) => {
-      setStaff(user);
-      if (user) {
-        refresh().catch((err) => setError(err.message));
-      } else {
-        setDashboard(null);
-        setMembers([]);
-        setPlans([]);
-        setPayments([]);
-      }
+    if (!staff) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    refresh().catch((err) => {
+      logoutStaff();
+      setStaff(null);
+      setError(err.message);
     });
-  }, []);
+  }, [staff]);
 
   async function handleLogin(event) {
     event.preventDefault();
     setError('');
     try {
-      await signInWithEmailAndPassword(auth, login.email, login.password);
-      await refresh();
+      const loggedInStaff = await loginStaff(login);
+      setStaff(loggedInStaff);
     } catch (err) {
       setError(err.message);
     }
   }
 
-  async function handleLogout() {
-    await firebaseSignOut(auth);
+  function handleLogout() {
+    logoutStaff();
+    setStaff(null);
+    setDashboard(null);
+    setMembers([]);
+    setPlans([]);
+    setPayments([]);
   }
 
   async function submitMember(event) {
@@ -197,7 +199,7 @@ function App() {
           <div>
             <p className="eyebrow">Excel Fit Gym</p>
             <h1>Staff Login</h1>
-            <p className="muted">Firebase SQL Connect management console for up to 50 active gym members.</p>
+            <p className="muted">Neon PostgreSQL management console for up to 50 active gym members.</p>
           </div>
           <form onSubmit={handleLogin} className="form-stack">
             <label>
@@ -219,7 +221,7 @@ function App() {
             {error && <div className="alert error">{error}</div>}
             <button type="submit">Log In</button>
           </form>
-          <p className="hint">Use a Firebase Authentication staff account with Email/Password enabled.</p>
+          <p className="hint">Use the staff email and password configured on the API server.</p>
         </section>
       </main>
     );
@@ -259,7 +261,7 @@ function App() {
       <main className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Firebase SQL Connect</p>
+            <p className="eyebrow">Neon PostgreSQL</p>
             <h1>{titleFor(activeTab)}</h1>
           </div>
           <div className="staff-chip">

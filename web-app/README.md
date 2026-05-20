@@ -1,18 +1,21 @@
 # Excel Fit Admin Console
 
-React + Vite admin console for Excel Fit Gym. Data is stored through Firebase SQL Connect and staff login uses Firebase Authentication.
+React + Vite admin console for Excel Fit Gym. Data is stored in Neon PostgreSQL through a Firebase Functions API, and staff login uses the app API.
 
-## Firebase setup
+## Setup
 
-1. Enable Email/Password sign-in in Firebase Authentication.
-2. Create a staff user, for example `admin@excelfitgym.com`.
-3. Deploy the SQL Connect schema and connector from the repo root:
+1. Add the Neon connection string to `functions/.env` as `DATABASE_URL`.
+2. Set `STAFF_EMAIL`, `STAFF_PASSWORD`, and `SESSION_SECRET` in `functions/.env`.
+3. Run the Firebase Functions API and Vite app locally:
 
 ```powershell
-firebase deploy --only dataconnect
+cd ..\functions
+npm.cmd install
+npm.cmd run serve
+cd ..\web-app
+npm.cmd install
+npm.cmd run dev
 ```
-
-4. Optional: seed demo plans and members with `dataconnect/seed_data.gql` using the Firebase SQL Connect VS Code extension.
 
 ## Run locally
 
@@ -21,4 +24,4 @@ npm.cmd install
 npm.cmd run dev
 ```
 
-Open `http://localhost:5173`.
+Keep the Functions emulator running in another terminal so `/api` can reach Neon. Open `http://localhost:5173`.

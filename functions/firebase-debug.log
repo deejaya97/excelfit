@@ -1,0 +1,454 @@
+[debug] [2026-05-20T03:12:38.318Z] ----------------------------------------------------------------------
+[debug] [2026-05-20T03:12:38.320Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\deepa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --only functions
+[debug] [2026-05-20T03:12:38.320Z] CLI Version:   15.18.0
+[debug] [2026-05-20T03:12:38.320Z] Platform:      win32
+[debug] [2026-05-20T03:12:38.321Z] Node Version:  v22.17.0
+[debug] [2026-05-20T03:12:38.321Z] Time:          Tue May 19 2026 23:12:38 GMT-0400 (Eastern Daylight Time)
+[debug] [2026-05-20T03:12:38.321Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-20T03:12:38.322Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-05-20T03:12:40.075Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-20T03:12:40.075Z] > authorizing via signed-in user (excelfitgym@gmail.com)
+[info] i  emulators: Starting emulators: functions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions"}}
+[debug] [2026-05-20T03:12:40.082Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-05-20T03:12:40.083Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-05-20T03:12:40.086Z] Write emulator hub locator at C:\Users\deepa\AppData\Local\Temp\hub-excelfit-c87bf.json
+[debug] [2026-05-20T03:12:40.098Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-05-20T03:12:40.098Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-05-20T03:12:40.098Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-05-20T03:12:40.098Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2026-05-20T03:12:40.113Z] defaultcredentials: writing to file C:\Users\deepa\AppData\Roaming\firebase\excelfitgym_gmail_com_application_default_credentials.json
+[debug] [2026-05-20T03:12:40.115Z] Setting GAC to C:\Users\deepa\AppData\Roaming\firebase\excelfitgym_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\deepa\\AppData\\Roaming\\firebase\\excelfitgym_gmail_com_application_default_credentials.json"}}
+[debug] [2026-05-20T03:12:40.116Z] Checked if tokens are valid: false, expires at: 1779033787670
+[debug] [2026-05-20T03:12:40.116Z] Checked if tokens are valid: false, expires at: 1779033787670
+[debug] [2026-05-20T03:12:40.116Z] > refreshing access token with scopes: []
+[debug] [2026-05-20T03:12:40.117Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-05-20T03:12:40.117Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-20T03:12:40.207Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-05-20T03:12:40.207Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-05-20T03:12:40.227Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-05-20T03:12:40.227Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-20T03:12:40.227Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/excelfit-c87bf/adminSdkConfig [none]
+[debug] [2026-05-20T03:12:40.411Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/excelfit-c87bf/adminSdkConfig 401
+[debug] [2026-05-20T03:12:40.411Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/excelfit-c87bf/adminSdkConfig {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2026-05-20T03:12:40.411Z] Got a 401 Unauthenticated error for a call that required authentication. Refreshing tokens.
+[debug] [2026-05-20T03:12:40.411Z] Checked if tokens are valid: false, expires at: 1779033787670
+[debug] [2026-05-20T03:12:40.411Z] Checked if tokens are valid: false, expires at: 1779033787670
+[debug] [2026-05-20T03:12:40.411Z] > refreshing access token with scopes: []
+[debug] [2026-05-20T03:12:40.412Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-05-20T03:12:40.412Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-20T03:12:40.487Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-05-20T03:12:40.487Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-20T03:12:40.488Z] Failed to get Admin SDK config for excelfit-c87bf, falling back to cache Failed to get Admin SDK for Firebase project excelfit-c87bf. Please make sure the project exists and your account has permission to access it. {"name":"FirebaseError","children":[],"exit":2,"message":"Failed to get Admin SDK for Firebase project excelfit-c87bf. Please make sure the project exists and your account has permission to access it.","original":{"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}},"response":{"statusCode":401}},"exit":1,"message":"Request to https://firebase.googleapis.com/v1beta1/projects/excelfit-c87bf/adminSdkConfig had HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":401},"status":500}
+[warn] !  functions: Unable to fetch project Admin SDK configuration, Admin SDK behavior in Cloud Functions emulator may be incorrect. {"metadata":{"emulator":{"name":"functions"},"message":"Unable to fetch project Admin SDK configuration, Admin SDK behavior in Cloud Functions emulator may be incorrect."}}
+[info] i  ui: downloading ui-v1.15.0.zip... {"metadata":{"emulator":{"name":"ui"},"message":"downloading ui-v1.15.0.zip..."}}
+[debug] [2026-05-20T03:12:40.504Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.15.0.zip 
+[debug] [2026-05-20T03:12:40.579Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.15.0.zip 200
+[debug] [2026-05-20T03:12:40.580Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.15.0.zip [stream]
+[debug] [2026-05-20T03:12:40.714Z] Data is 3538469
+[debug] [2026-05-20T03:12:40.714Z] [unzip] Entry: client/ (compressed_size=0 bytes, uncompressed_size=0 bytes)
+[debug] [2026-05-20T03:12:40.714Z] [unzip] Processing entry: client\
+[debug] [2026-05-20T03:12:40.715Z] [unzip] mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\
+[debug] [2026-05-20T03:12:40.716Z] [unzip] Entry: client/favicon-16x16.png (compressed_size=293 bytes, uncompressed_size=293 bytes)
+[debug] [2026-05-20T03:12:40.716Z] [unzip] Processing entry: client\favicon-16x16.png
+[debug] [2026-05-20T03:12:40.716Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.716Z] [unzip] Writing file: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\favicon-16x16.png
+[debug] [2026-05-20T03:12:40.717Z] [unzip] Entry: client/safari-pinned-tab.svg (compressed_size=1433 bytes, uncompressed_size=2611 bytes)
+[debug] [2026-05-20T03:12:40.717Z] [unzip] Processing entry: client\safari-pinned-tab.svg
+[debug] [2026-05-20T03:12:40.718Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.718Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\safari-pinned-tab.svg
+[debug] [2026-05-20T03:12:40.721Z] [unzip] Entry: client/favicon.ico (compressed_size=2933 bytes, uncompressed_size=13294 bytes)
+[debug] [2026-05-20T03:12:40.721Z] [unzip] Processing entry: client\favicon.ico
+[debug] [2026-05-20T03:12:40.721Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.722Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\favicon.ico
+[debug] [2026-05-20T03:12:40.724Z] [unzip] Entry: client/index.html (compressed_size=1364 bytes, uncompressed_size=3071 bytes)
+[debug] [2026-05-20T03:12:40.724Z] [unzip] Processing entry: client\index.html
+[debug] [2026-05-20T03:12:40.724Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.724Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\index.html
+[debug] [2026-05-20T03:12:40.725Z] [unzip] Entry: client/android-chrome-192x192.png (compressed_size=2684 bytes, uncompressed_size=2684 bytes)
+[debug] [2026-05-20T03:12:40.726Z] [unzip] Processing entry: client\android-chrome-192x192.png
+[debug] [2026-05-20T03:12:40.726Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.726Z] [unzip] Writing file: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\android-chrome-192x192.png
+[debug] [2026-05-20T03:12:40.727Z] [unzip] Entry: client/apple-touch-icon.png (compressed_size=2123 bytes, uncompressed_size=2152 bytes)
+[debug] [2026-05-20T03:12:40.727Z] [unzip] Processing entry: client\apple-touch-icon.png
+[debug] [2026-05-20T03:12:40.727Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.727Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\apple-touch-icon.png
+[debug] [2026-05-20T03:12:40.729Z] [unzip] Entry: client/android-chrome-512x512.png (compressed_size=5369 bytes, uncompressed_size=5411 bytes)
+[debug] [2026-05-20T03:12:40.729Z] [unzip] Processing entry: client\android-chrome-512x512.png
+[debug] [2026-05-20T03:12:40.729Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.729Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\android-chrome-512x512.png
+[debug] [2026-05-20T03:12:40.730Z] [unzip] Entry: client/manifest.json (compressed_size=245 bytes, uncompressed_size=551 bytes)
+[debug] [2026-05-20T03:12:40.730Z] [unzip] Processing entry: client\manifest.json
+[debug] [2026-05-20T03:12:40.730Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.730Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\manifest.json
+[debug] [2026-05-20T03:12:40.732Z] [unzip] Entry: client/robots.txt (compressed_size=26 bytes, uncompressed_size=26 bytes)
+[debug] [2026-05-20T03:12:40.732Z] [unzip] Processing entry: client\robots.txt
+[debug] [2026-05-20T03:12:40.732Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.732Z] [unzip] Writing file: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\robots.txt
+[debug] [2026-05-20T03:12:40.732Z] [unzip] Entry: client/mstile-150x150.png (compressed_size=2034 bytes, uncompressed_size=2034 bytes)
+[debug] [2026-05-20T03:12:40.732Z] [unzip] Processing entry: client\mstile-150x150.png
+[debug] [2026-05-20T03:12:40.732Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.733Z] [unzip] Writing file: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\mstile-150x150.png
+[debug] [2026-05-20T03:12:40.734Z] [unzip] Entry: client/assets/ (compressed_size=0 bytes, uncompressed_size=0 bytes)
+[debug] [2026-05-20T03:12:40.734Z] [unzip] Processing entry: client\assets\
+[debug] [2026-05-20T03:12:40.734Z] [unzip] mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\
+[debug] [2026-05-20T03:12:40.734Z] [unzip] Entry: client/assets/index-BX-A56oj.js (compressed_size=582089 bytes, uncompressed_size=2092775 bytes)
+[debug] [2026-05-20T03:12:40.734Z] [unzip] Processing entry: client\assets\index-BX-A56oj.js
+[debug] [2026-05-20T03:12:40.734Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets
+[debug] [2026-05-20T03:12:40.734Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\index-BX-A56oj.js
+[debug] [2026-05-20T03:12:40.747Z] [unzip] Entry: client/assets/index-CjB9C900.css (compressed_size=35979 bytes, uncompressed_size=298654 bytes)
+[debug] [2026-05-20T03:12:40.747Z] [unzip] Processing entry: client\assets\index-CjB9C900.css
+[debug] [2026-05-20T03:12:40.747Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets
+[debug] [2026-05-20T03:12:40.747Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\index-CjB9C900.css
+[debug] [2026-05-20T03:12:40.750Z] [unzip] Entry: client/assets/index-BX-A56oj.js.map (compressed_size=2362482 bytes, uncompressed_size=10036679 bytes)
+[debug] [2026-05-20T03:12:40.750Z] [unzip] Processing entry: client\assets\index-BX-A56oj.js.map
+[debug] [2026-05-20T03:12:40.750Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets
+[debug] [2026-05-20T03:12:40.750Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\index-BX-A56oj.js.map
+[debug] [2026-05-20T03:12:40.790Z] [unzip] Entry: client/assets/extensions/ (compressed_size=0 bytes, uncompressed_size=0 bytes)
+[debug] [2026-05-20T03:12:40.791Z] [unzip] Processing entry: client\assets\extensions\
+[debug] [2026-05-20T03:12:40.791Z] [unzip] mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\extensions\
+[debug] [2026-05-20T03:12:40.791Z] [unzip] Entry: client/assets/extensions/default-extension.png (compressed_size=1646 bytes, uncompressed_size=1657 bytes)
+[debug] [2026-05-20T03:12:40.791Z] [unzip] Processing entry: client\assets\extensions\default-extension.png
+[debug] [2026-05-20T03:12:40.791Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\extensions
+[debug] [2026-05-20T03:12:40.791Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\extensions\default-extension.png
+[debug] [2026-05-20T03:12:40.792Z] [unzip] Entry: client/assets/img/ (compressed_size=0 bytes, uncompressed_size=0 bytes)
+[debug] [2026-05-20T03:12:40.792Z] [unzip] Processing entry: client\assets\img\
+[debug] [2026-05-20T03:12:40.792Z] [unzip] mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\img\
+[debug] [2026-05-20T03:12:40.793Z] [unzip] Entry: client/assets/img/database.png (compressed_size=29449 bytes, uncompressed_size=29988 bytes)
+[debug] [2026-05-20T03:12:40.793Z] [unzip] Processing entry: client\assets\img\database.png
+[debug] [2026-05-20T03:12:40.793Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\img
+[debug] [2026-05-20T03:12:40.793Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\img\database.png
+[debug] [2026-05-20T03:12:40.794Z] [unzip] Entry: client/assets/provider-icons/ (compressed_size=0 bytes, uncompressed_size=0 bytes)
+[debug] [2026-05-20T03:12:40.794Z] [unzip] Processing entry: client\assets\provider-icons\
+[debug] [2026-05-20T03:12:40.794Z] [unzip] mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\
+[debug] [2026-05-20T03:12:40.794Z] [unzip] Entry: client/assets/provider-icons/auth_service_saml.svg (compressed_size=575 bytes, uncompressed_size=1226 bytes)
+[debug] [2026-05-20T03:12:40.794Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_saml.svg
+[debug] [2026-05-20T03:12:40.794Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.795Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_saml.svg
+[debug] [2026-05-20T03:12:40.796Z] [unzip] Entry: client/assets/provider-icons/auth_service_phone.svg (compressed_size=261 bytes, uncompressed_size=414 bytes)
+[debug] [2026-05-20T03:12:40.796Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_phone.svg
+[debug] [2026-05-20T03:12:40.796Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.796Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_phone.svg
+[debug] [2026-05-20T03:12:40.797Z] [unzip] Entry: client/assets/provider-icons/auth_service_facebook.svg (compressed_size=289 bytes, uncompressed_size=457 bytes)
+[debug] [2026-05-20T03:12:40.797Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_facebook.svg
+[debug] [2026-05-20T03:12:40.797Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.797Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_facebook.svg
+[debug] [2026-05-20T03:12:40.798Z] [unzip] Entry: client/assets/provider-icons/auth_service_game_center.svg (compressed_size=991 bytes, uncompressed_size=3921 bytes)
+[debug] [2026-05-20T03:12:40.798Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_game_center.svg
+[debug] [2026-05-20T03:12:40.799Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.799Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_game_center.svg
+[debug] [2026-05-20T03:12:40.800Z] [unzip] Entry: client/assets/provider-icons/auth_service_apple.svg (compressed_size=230 bytes, uncompressed_size=334 bytes)
+[debug] [2026-05-20T03:12:40.800Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_apple.svg
+[debug] [2026-05-20T03:12:40.800Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.800Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_apple.svg
+[debug] [2026-05-20T03:12:40.801Z] [unzip] Entry: client/assets/provider-icons/auth_service_github.svg (compressed_size=466 bytes, uncompressed_size=838 bytes)
+[debug] [2026-05-20T03:12:40.801Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_github.svg
+[debug] [2026-05-20T03:12:40.801Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.801Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_github.svg
+[debug] [2026-05-20T03:12:40.802Z] [unzip] Entry: client/assets/provider-icons/auth_service_mslive.svg (compressed_size=203 bytes, uncompressed_size=378 bytes)
+[debug] [2026-05-20T03:12:40.802Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_mslive.svg
+[debug] [2026-05-20T03:12:40.802Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.802Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_mslive.svg
+[debug] [2026-05-20T03:12:40.803Z] [unzip] Entry: client/assets/provider-icons/auth_service_yahoo.svg (compressed_size=577 bytes, uncompressed_size=1182 bytes)
+[debug] [2026-05-20T03:12:40.803Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_yahoo.svg
+[debug] [2026-05-20T03:12:40.803Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.804Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_yahoo.svg
+[debug] [2026-05-20T03:12:40.804Z] [unzip] Entry: client/assets/provider-icons/auth_service_twitter.svg (compressed_size=444 bytes, uncompressed_size=751 bytes)
+[debug] [2026-05-20T03:12:40.804Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_twitter.svg
+[debug] [2026-05-20T03:12:40.804Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.805Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_twitter.svg
+[debug] [2026-05-20T03:12:40.806Z] [unzip] Entry: client/assets/provider-icons/auth_service_play_games.svg (compressed_size=565 bytes, uncompressed_size=1173 bytes)
+[debug] [2026-05-20T03:12:40.806Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_play_games.svg
+[debug] [2026-05-20T03:12:40.806Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.806Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_play_games.svg
+[debug] [2026-05-20T03:12:40.807Z] [unzip] Entry: client/assets/provider-icons/auth_service_email.svg (compressed_size=228 bytes, uncompressed_size=326 bytes)
+[debug] [2026-05-20T03:12:40.807Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_email.svg
+[debug] [2026-05-20T03:12:40.807Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.807Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_email.svg
+[debug] [2026-05-20T03:12:40.808Z] [unzip] Entry: client/assets/provider-icons/auth_service_google.svg (compressed_size=409 bytes, uncompressed_size=720 bytes)
+[debug] [2026-05-20T03:12:40.808Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_google.svg
+[debug] [2026-05-20T03:12:40.808Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.808Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_google.svg
+[debug] [2026-05-20T03:12:40.809Z] [unzip] Entry: client/assets/provider-icons/auth_service_oidc.svg (compressed_size=414 bytes, uncompressed_size=858 bytes)
+[debug] [2026-05-20T03:12:40.809Z] [unzip] Processing entry: client\assets\provider-icons\auth_service_oidc.svg
+[debug] [2026-05-20T03:12:40.809Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons
+[debug] [2026-05-20T03:12:40.809Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\assets\provider-icons\auth_service_oidc.svg
+[debug] [2026-05-20T03:12:40.810Z] [unzip] Entry: client/browserconfig.xml (compressed_size=491 bytes, uncompressed_size=822 bytes)
+[debug] [2026-05-20T03:12:40.810Z] [unzip] Processing entry: client\browserconfig.xml
+[debug] [2026-05-20T03:12:40.810Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.810Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\browserconfig.xml
+[debug] [2026-05-20T03:12:40.811Z] [unzip] Entry: client/favicon-32x32.png (compressed_size=475 bytes, uncompressed_size=475 bytes)
+[debug] [2026-05-20T03:12:40.811Z] [unzip] Processing entry: client\favicon-32x32.png
+[debug] [2026-05-20T03:12:40.811Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client
+[debug] [2026-05-20T03:12:40.811Z] [unzip] Writing file: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\client\favicon-32x32.png
+[debug] [2026-05-20T03:12:40.812Z] [unzip] Entry: server/ (compressed_size=0 bytes, uncompressed_size=0 bytes)
+[debug] [2026-05-20T03:12:40.812Z] [unzip] Processing entry: server\
+[debug] [2026-05-20T03:12:40.812Z] [unzip] mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\server\
+[debug] [2026-05-20T03:12:40.812Z] [unzip] Entry: server/server.mjs.map (compressed_size=217845 bytes, uncompressed_size=944978 bytes)
+[debug] [2026-05-20T03:12:40.812Z] [unzip] Processing entry: server\server.mjs.map
+[debug] [2026-05-20T03:12:40.812Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\server
+[debug] [2026-05-20T03:12:40.812Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\server\server.mjs.map
+[debug] [2026-05-20T03:12:40.817Z] [unzip] Entry: server/server.mjs (compressed_size=276407 bytes, uncompressed_size=933701 bytes)
+[debug] [2026-05-20T03:12:40.818Z] [unzip] Processing entry: server\server.mjs
+[debug] [2026-05-20T03:12:40.818Z] [unzip] else mkdir: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\server
+[debug] [2026-05-20T03:12:40.818Z] [unzip] deflating: C:\Users\deepa\.cache\firebase\emulators\ui-v1.15.0\server\server.mjs
+[info] i  functions: Watching "C:\Users\deepa\dev\excelfit\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\deepa\\dev\\excelfit\\functions\" for Cloud Functions..."}}
+[debug] [2026-05-20T03:12:40.826Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2026-05-20T03:12:41.506Z] > [functions] package.json contents: {
+  "main": "lib/index.js",
+  "scripts": {
+    "genkit:start": "genkit start -- tsx --watch src/genkit-sample.ts",
+    "lint": "eslint --ext .js,.ts src/index.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "name": "functions",
+  "engines": {
+    "node": "24"
+  },
+  "dependencies": {
+    "@types/pg": "^8.20.0",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.10.0",
+    "firebase-functions": "^7.0.0",
+    "genkit": "^1.34.0",
+    "pg": "^8.21.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.4.1",
+    "tsx": "^4.22.1",
+    "typescript": "^6.0.3"
+  },
+  "private": true
+}
+[debug] [2026-05-20T03:12:41.507Z] Building nodejs source
+[debug] [2026-05-20T03:12:41.507Z] Failed to find version of module node: reached end of search path C:\Users\deepa\dev\excelfit\functions\node_modules
+[warn] !  functions: Your requested "node" version "24" doesn't match your global version "22". Using node@22 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-05-20T03:12:41.509Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-05-20T03:12:41.513Z] Found firebase-functions binary at 'C:\Users\deepa\dev\excelfit\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8536
+
+[debug] [2026-05-20T03:12:42.207Z] Got response from /__/functions.yaml {"endpoints":{"api":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{},"params":[{"name":"DATABASE_URL","type":"string"},{"name":"STAFF_EMAIL","type":"string"},{"name":"STAFF_PASSWORD","type":"string"},{"name":"SESSION_SECRET","type":"string"}]}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[info] +  functions[us-central1-api]: http function initialized (http://127.0.0.1:5001/excelfit-c87bf/us-central1/api). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/excelfit-c87bf/us-central1/api)."}}
+[debug] [2026-05-20T03:12:46.247Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase SQL Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2026-05-20T03:13:30.322Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:13:30.322Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:13:30.322Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:13:30.322Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:13:30.322Z] Accepted request POST /excelfit-c87bf/us-central1/api/login --> us-central1-api
+[debug] [2026-05-20T03:13:30.322Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:13:30.323Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-05-20T03:13:30.342Z] [worker-pool] addWorker(us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-api)"}}
+[debug] [2026-05-20T03:13:30.343Z] [worker-pool] Adding worker with key us-central1-api, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-api, total=1"}}
+[debug] [2026-05-20T03:13:31.066Z] [runtime-status] [25808] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"C:\\Users\\deepa\\dev\\excelfit\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-05-20T03:13:31.067Z] [runtime-status] [25808] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"C:\\Users\\deepa\\dev\\excelfit\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.0.0\",\"resolution\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-05-20T03:13:31.067Z] [runtime-status] [25808] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2026-05-20T03:13:31.068Z] [runtime-status] [25808] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"C:\\Users\\deepa\\dev\\excelfit\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.0.0\",\"resolution\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-05-20T03:13:31.068Z] [runtime-status] [25808] Detected firebase-functions v7+, skipping legacy stubs. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Detected firebase-functions v7+, skipping legacy stubs."}}
+[debug] [2026-05-20T03:13:31.068Z] [runtime-status] [25808] Resolved module firebase-admin {"declared":true,"installed":true,"version":"13.10.0","resolution":"C:\\Users\\deepa\\dev\\excelfit\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2026-05-20T03:13:31.111Z] [runtime-status] [25808] Resolved module firebase-functions {"declared":true,"installed":true,"version":"7.0.0","resolution":"C:\\Users\\deepa\\dev\\excelfit\\functions\\node_modules\\firebase-functions\\lib\\v2\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"7.0.0\",\"resolution\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v2\\\\index.js\"}"}}
+[debug] [2026-05-20T03:13:31.337Z] [runtime-status] [25808] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"13.10.0","resolution":"C:\\Users\\deepa\\dev\\excelfit\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"13.10.0\",\"resolution\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2026-05-20T03:13:31.450Z] [runtime-status] [25808] Functions runtime initialized. {"cwd":"C:\\Users\\deepa\\dev\\excelfit\\functions","node_version":"22.17.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Functions runtime initialized. {\"cwd\":\"C:\\\\Users\\\\deepa\\\\dev\\\\excelfit\\\\functions\",\"node_version\":\"22.17.0\"}"}}
+[debug] [2026-05-20T03:13:31.450Z] [runtime-status] [25808] Listening to port: \\?\pipe\fire_emu_a19d5e8a591a7884 {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[runtime-status] [25808] Listening to port: \\\\?\\pipe\\fire_emu_a19d5e8a591a7884"}}
+[debug] [2026-05-20T03:13:31.564Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:13:31.565Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:13:31.566Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:13:31.595Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 29.8364ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 29.8364ms"}}
+[debug] [2026-05-20T03:13:31.596Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:13:31.596Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:13:31.596Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:13:31.596Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:13:56.292Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:13:56.292Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:13:56.293Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:13:56.292Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:13:56.293Z] Accepted request POST /excelfit-c87bf/us-central1/api/login --> us-central1-api
+[debug] [2026-05-20T03:13:56.293Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:13:56.293Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login"}}
+[debug] [2026-05-20T03:13:56.293Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:13:56.294Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:13:56.296Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 2.6461ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 2.6461ms"}}
+[debug] [2026-05-20T03:13:56.296Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:13:56.296Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:13:56.297Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:13:56.297Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:16:04.050Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:16:04.050Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:16:04.050Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:16:04.050Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:16:04.050Z] Accepted request POST /excelfit-c87bf/us-central1/api/login --> us-central1-api
+[debug] [2026-05-20T03:16:04.050Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:16:04.051Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login"}}
+[debug] [2026-05-20T03:16:04.051Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:16:04.051Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:16:04.053Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 2.4891ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 2.4891ms"}}
+[debug] [2026-05-20T03:16:04.054Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:16:04.054Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:16:04.054Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:16:04.054Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:16:56.406Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:16:56.405Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:16:56.406Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:16:56.405Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:16:56.406Z] Accepted request POST /excelfit-c87bf/us-central1/api/login --> us-central1-api
+[debug] [2026-05-20T03:16:56.406Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:16:56.406Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login"}}
+[debug] [2026-05-20T03:16:56.406Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:16:56.406Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:16:56.408Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 1.9635ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 1.9635ms"}}
+[debug] [2026-05-20T03:16:56.409Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:16:56.409Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:16:56.409Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:16:56.409Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:17:35.806Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:17:35.806Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:17:35.806Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/login-2026-05-20T03:17:35.806Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:17:35.806Z] Accepted request POST /excelfit-c87bf/us-central1/api/login --> us-central1-api
+[debug] [2026-05-20T03:17:35.807Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:17:35.807Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/login, mapping to path=/login"}}
+[debug] [2026-05-20T03:17:35.807Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:17:35.807Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:17:35.810Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 3.0762ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 3.0762ms"}}
+[debug] [2026-05-20T03:17:35.811Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:17:35.811Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:17:35.811Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:17:35.811Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:17:35.820Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:17:35.820Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:17:35.820Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:17:35.820Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:17:35.820Z] Accepted request GET /excelfit-c87bf/us-central1/api/gym-data --> us-central1-api
+[debug] [2026-05-20T03:17:35.821Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:17:35.821Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data"}}
+[debug] [2026-05-20T03:17:35.821Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:17:35.821Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[info] >  (node:25808) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'. {"user":"(node:25808) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m (node:25808) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'."}}
+[info] >  In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees. {"user":"In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees."}}
+[info] >   {"user":"","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m "}}
+[info] >  To prepare for this change: {"user":"To prepare for this change:","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m To prepare for this change:"}}
+[info] >  - If you want the current behavior, explicitly use 'sslmode=verify-full' {"user":"- If you want the current behavior, explicitly use 'sslmode=verify-full'","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m - If you want the current behavior, explicitly use 'sslmode=verify-full'"}}
+[info] >  - If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require' {"user":"- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m - If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'"}}
+[info] >   {"user":"","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m "}}
+[info] >  See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions. {"user":"See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions."}}
+[info] >  (Use `node --trace-warnings ...` to show where the warning was created) {"user":"(Use `node --trace-warnings ...` to show where the warning was created)","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"\u001b[90m> \u001b[39m (Use `node --trace-warnings ...` to show where the warning was created)"}}
+[debug] [2026-05-20T03:17:36.400Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 579.6571ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 579.6571ms"}}
+[debug] [2026-05-20T03:17:36.401Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:17:36.401Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:17:36.401Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:17:36.401Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:18.471Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/members-2026-05-20T03:18:18.471Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:18.471Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/members-2026-05-20T03:18:18.471Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:18:18.471Z] Accepted request POST /excelfit-c87bf/us-central1/api/members --> us-central1-api
+[debug] [2026-05-20T03:18:18.471Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:18:18.471Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/members, mapping to path=/members {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/members, mapping to path=/members"}}
+[debug] [2026-05-20T03:18:18.471Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:18:18.472Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:18:18.594Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 122.6813ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 122.6813ms"}}
+[debug] [2026-05-20T03:18:18.595Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:18:18.595Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:18:18.595Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:18:18.596Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:18.602Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:18:18.602Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:18.602Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:18:18.602Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:18:18.602Z] Accepted request GET /excelfit-c87bf/us-central1/api/gym-data --> us-central1-api
+[debug] [2026-05-20T03:18:18.603Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:18:18.603Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data"}}
+[debug] [2026-05-20T03:18:18.603Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:18:18.603Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:18:18.743Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 140.0828ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 140.0828ms"}}
+[debug] [2026-05-20T03:18:18.744Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:18:18.744Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:18:18.744Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:18:18.744Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:28.939Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/payments-2026-05-20T03:18:28.939Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:28.939Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/payments-2026-05-20T03:18:28.939Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:18:28.939Z] Accepted request POST /excelfit-c87bf/us-central1/api/payments --> us-central1-api
+[debug] [2026-05-20T03:18:28.940Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:18:28.940Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/payments, mapping to path=/payments {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/payments, mapping to path=/payments"}}
+[debug] [2026-05-20T03:18:28.940Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:18:28.940Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:18:29.059Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 118.7933ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 118.7933ms"}}
+[debug] [2026-05-20T03:18:29.060Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:18:29.060Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:18:29.060Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:18:29.061Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:29.066Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:18:29.066Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:29.066Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:18:29.066Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:18:29.066Z] Accepted request GET /excelfit-c87bf/us-central1/api/gym-data --> us-central1-api
+[debug] [2026-05-20T03:18:29.066Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:18:29.066Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data"}}
+[debug] [2026-05-20T03:18:29.067Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:18:29.067Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:18:29.166Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 99.2968ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 99.2968ms"}}
+[debug] [2026-05-20T03:18:29.166Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:18:29.166Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:18:29.167Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:18:29.167Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:45.973Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/checkins-2026-05-20T03:18:45.973Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:45.974Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/checkins-2026-05-20T03:18:45.973Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:18:45.974Z] Accepted request POST /excelfit-c87bf/us-central1/api/checkins --> us-central1-api
+[debug] [2026-05-20T03:18:45.974Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:18:45.974Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/checkins, mapping to path=/checkins {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/checkins, mapping to path=/checkins"}}
+[debug] [2026-05-20T03:18:45.974Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:18:45.974Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:18:46.075Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 100.6235ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 100.6235ms"}}
+[debug] [2026-05-20T03:18:46.076Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:18:46.076Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:18:46.076Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:18:46.076Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:46.083Z] [work-queue] {"queuedWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:18:46.083Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-05-20T03:18:46.083Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/excelfit-c87bf/us-central1/api/gym-data-2026-05-20T03:18:46.083Z"],"workRunningCount":1}
+[debug] [2026-05-20T03:18:46.083Z] Accepted request GET /excelfit-c87bf/us-central1/api/gym-data --> us-central1-api
+[debug] [2026-05-20T03:18:46.083Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-05-20T03:18:46.084Z] [functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/excelfit-c87bf/us-central1/api/gym-data, mapping to path=/gym-data"}}
+[debug] [2026-05-20T03:18:46.084Z] [worker-pool] submitRequest(triggerId=us-central1-api) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-api)"}}
+[info] i  functions: Beginning execution of "us-central1-api" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Beginning execution of \"us-central1-api\""}}
+[debug] [2026-05-20T03:18:46.084Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: BUSY"}}
+[debug] [2026-05-20T03:18:46.191Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-api" in 107.7822ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finished \"us-central1-api\" in 107.7822ms"}}
+[debug] [2026-05-20T03:18:46.192Z] [worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"[worker-us-central1-api-bbe9f333-fedb-4468-9540-e41417727320]: IDLE"}}
+[debug] [2026-05-20T03:18:46.192Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-05-20T03:18:46.192Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-05-20T03:18:46.192Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
