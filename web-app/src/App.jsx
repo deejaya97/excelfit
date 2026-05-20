@@ -1,5 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
+import {
+  assignMembership,
+  createMember,
+  createPlan,
+  getStoredStaff,
+  loginStaff,
+  loadGymData,
+  recordCheckIn,
+  recordPayment,
+  logoutStaff,
+  validateMemberCheckIn,
+} from './gymData';
 
 const blankMember = {
   firstName: '',
@@ -24,24 +36,14 @@ const money = (value) =>
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
 
-async function api(path, options = {}) {
-  const response = await fetch(path, {
-    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-    credentials: 'include',
-    ...options,
-  });
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.message || 'Something went wrong');
-  return data;
-}
-
 function App() {
-  const [staff, setStaff] = useState(null);
-  const [login, setLogin] = useState({ username: 'admin', password: 'admin123' });
+  const [staff, setStaff] = useState(() => getStoredStaff());
+  const [login, setLogin] = useState({ email: 'admin@excelfitgym.com', password: '' });
   const [activeTab, setActiveTab] = useState('dashboard');
   const [dashboard, setDashboard] = useState(null);
   const [members, setMembers] = useState([]);
   const [plans, setPlans] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [memberForm, setMemberForm] = useState(blankMember);
   const [planForm, setPlanForm] = useState(blankPlan);
   const [membershipForm, setMembershipForm] = useState({ memberId: '', planId: '', startDate: '' });
@@ -66,45 +68,47 @@ function App() {
   );
 
   async function refresh() {
-    const [dashboardData, memberData, planData] = await Promise.all([
-      api('/api/dashboard'),
-      api('/api/members'),
-      api('/api/plans'),
-    ]);
-    setDashboard(dashboardData);
-    setMembers(memberData);
-    setPlans(planData);
+    const data = await loadGymData();
+    setDashboard(data.dashboard);
+    setMembers(data.members);
+    setPlans(data.plans);
+    setPayments(data.payments);
   }
 
   useEffect(() => {
-    api('/api/session').then(({ staff: activeStaff }) => {
-      setStaff(activeStaff);
-      if (activeStaff) refresh().catch((err) => setError(err.message));
+    if (!staff) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    refresh().catch((err) => {
+      logoutStaff();
+      setStaff(null);
+      setError(err.message);
     });
-  }, []);
+  }, [staff]);
 
   async function handleLogin(event) {
     event.preventDefault();
     setError('');
     try {
-      const data = await api('/api/login', { method: 'POST', body: JSON.stringify(login) });
-      setStaff(data.staff);
-      await refresh();
+      const loggedInStaff = await loginStaff(login);
+      setStaff(loggedInStaff);
     } catch (err) {
       setError(err.message);
     }
   }
 
-  async function handleLogout() {
-    await api('/api/logout', { method: 'POST' });
+  function handleLogout() {
+    logoutStaff();
     setStaff(null);
     setDashboard(null);
+    setMembers([]);
+    setPlans([]);
+    setPayments([]);
   }
 
   async function submitMember(event) {
     event.preventDefault();
     await runAction(async () => {
-      await api('/api/members', { method: 'POST', body: JSON.stringify(memberForm) });
+      await createMember(memberForm, members);
       setMemberForm(blankMember);
       setNotice('Member registered.');
       await refresh();
@@ -114,7 +118,7 @@ function App() {
   async function submitPlan(event) {
     event.preventDefault();
     await runAction(async () => {
-      await api('/api/plans', { method: 'POST', body: JSON.stringify(planForm) });
+      await createPlan(planForm);
       setPlanForm(blankPlan);
       setNotice('Membership plan added.');
       await refresh();
@@ -124,7 +128,7 @@ function App() {
   async function submitMembership(event) {
     event.preventDefault();
     await runAction(async () => {
-      await api('/api/memberships', { method: 'POST', body: JSON.stringify(membershipForm) });
+      await assignMembership(membershipForm, plans);
       setMembershipForm({ memberId: '', planId: '', startDate: '' });
       setNotice('Membership assigned.');
       await refresh();
@@ -134,8 +138,7 @@ function App() {
   async function submitPayment(event) {
     event.preventDefault();
     await runAction(async () => {
-      const payment = await api('/api/payments', { method: 'POST', body: JSON.stringify(paymentForm) });
-      const receiptData = await api(`/api/payments/${payment.id}/receipt`);
+      const receiptData = await recordPayment(paymentForm, members, payments);
       setReceipt(receiptData);
       setPaymentForm({
         memberId: '',
@@ -155,16 +158,16 @@ function App() {
     event.preventDefault();
     setError('');
     setCheckinResult(null);
+    const result = validateMemberCheckIn(checkinCode, members);
     try {
-      const result = await api('/api/checkins', {
-        method: 'POST',
-        body: JSON.stringify({ memberCode: checkinCode }),
-      });
+      if (result.member) {
+        await recordCheckIn(result.member, result.status, result.message);
+      }
       setCheckinResult(result);
       setCheckinCode('');
       await refresh();
     } catch (err) {
-      setCheckinResult({ status: 'invalid', message: err.message });
+      setCheckinResult({ status: 'invalid', message: err.message || result.message });
       await refresh().catch(() => {});
     }
   }
@@ -184,7 +187,7 @@ function App() {
       ...form,
       memberId: member.id,
       membershipId: '',
-      amount: member.plan_name ? plans.find((plan) => plan.name === member.plan_name)?.price || '' : '',
+      amount: member.plan_price || (member.plan_name ? plans.find((plan) => plan.name === member.plan_name)?.price || '' : ''),
     }));
     setActiveTab('payments');
   }
@@ -196,12 +199,16 @@ function App() {
           <div>
             <p className="eyebrow">Excel Fit Gym</p>
             <h1>Staff Login</h1>
-            <p className="muted">Local management console for up to 50 active gym members.</p>
+            <p className="muted">Neon PostgreSQL management console for up to 50 active gym members.</p>
           </div>
           <form onSubmit={handleLogin} className="form-stack">
             <label>
-              Username
-              <input value={login.username} onChange={(e) => setLogin({ ...login, username: e.target.value })} />
+              Email
+              <input
+                type="email"
+                value={login.email}
+                onChange={(e) => setLogin({ ...login, email: e.target.value })}
+              />
             </label>
             <label>
               Password
@@ -214,7 +221,7 @@ function App() {
             {error && <div className="alert error">{error}</div>}
             <button type="submit">Log In</button>
           </form>
-          <p className="hint">Demo staff account: admin / admin123</p>
+          <p className="hint">Use the staff email and password configured on the API server.</p>
         </section>
       </main>
     );
@@ -254,11 +261,11 @@ function App() {
       <main className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Local SQLite Database</p>
+            <p className="eyebrow">Neon PostgreSQL</p>
             <h1>{titleFor(activeTab)}</h1>
           </div>
           <div className="staff-chip">
-            <span>{staff.name}</span>
+            <span>{staff.email}</span>
             <button type="button" onClick={handleLogout}>
               Logout
             </button>

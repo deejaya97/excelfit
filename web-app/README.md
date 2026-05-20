@@ -1,16 +1,27 @@
-# React + Vite
+# Excel Fit Admin Console
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite admin console for Excel Fit Gym. Data is stored in Neon PostgreSQL through a Firebase Functions API, and staff login uses the app API.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Add the Neon connection string to `functions/.env` as `DATABASE_URL`.
+2. Set `STAFF_EMAIL`, `STAFF_PASSWORD`, and `SESSION_SECRET` in `functions/.env`.
+3. Run the Firebase Functions API and Vite app locally:
 
-## React Compiler
+```powershell
+cd ..\functions
+npm.cmd install
+npm.cmd run serve
+cd ..\web-app
+npm.cmd install
+npm.cmd run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run locally
 
-## Expanding the ESLint configuration
+```powershell
+npm.cmd install
+npm.cmd run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Keep the Functions emulator running in another terminal so `/api` can reach Neon. Open `http://localhost:5173`.
